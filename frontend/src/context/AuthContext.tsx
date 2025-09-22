@@ -31,7 +31,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const checkUserStatus = async () => {
       try {
         // PENTING: `credentials: 'include'` untuk mengirim cookie sesi
-        const response = await fetch('readme-generator-production-08d5.up.railway.app/api/auth/user', {
+        const response = await fetch('https://readme-generator-production-08d5.up.railway.app/api/auth/user', {
           credentials: 'include',
         });
         const data = await response.json();
