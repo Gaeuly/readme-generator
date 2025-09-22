@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* Glossy card base styles */
+@layer components {
+  .glossy-card {
+    @apply bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl border border-gray-700/50 shadow-2xl;
+  }
+  
+  .glossy-button {
+    @apply bg-gradient-to-r from-gray-700/80 to-gray-800/80 backdrop-blur-xl border border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection colors */
+::selection {
+  @apply bg-gray-600 text-white;
+}
+
+/* Markdown preview styles */
+.markdown-preview h1 {
+  @apply text-3xl font-bold mb-4 text-white;
+}
+
+.markdown-preview h2 {
+  @apply text-2xl font-semibold mb-3 text-gray-100;
+}
+
+.markdown-preview h3 {
+  @apply text-xl font-medium mb-2 text-gray-200;
+}
+
+.markdown-preview p {
+  @apply mb-3 text-gray-300 leading-relaxed;
+}
+
+.markdown-preview code {
+  @apply bg-gray-800 px-2 py-1 rounded text-sm font-mono text-gray-200;
+}
+
+.markdown-preview pre {
+  @apply bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.markdown-preview pre code {
+  @apply bg-transparent p-0;
+}
+
+.markdown-preview ul, .markdown-preview ol {
+  @apply mb-4 ml-6;
+}
+
+.markdown-preview li {
+  @apply mb-1 text-gray-300;
+}
+
+.markdown-preview blockquote {
+  @apply border-l-4 border-gray-600 pl-4 italic text-gray-400 mb-4;
+}
+
+.markdown-preview a {
+  @apply text-blue-400 hover:text-blue-300 underline;
+}
+
+.markdown-preview hr {
+  @apply border-gray-700 my-6;
+}
