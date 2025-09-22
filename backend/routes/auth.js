@@ -39,7 +39,7 @@ router.get('/user', (req, res) => {
 router.get('/logout', (req, res, next) => {
     req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect('https://readmemd-generator.netlify.app'); // Redirect ke frontend setelah logout
+        res.redirect('https://readmemd-generator.netlify.app/'); // Redirect ke frontend setelah logout
     });
 });
 
