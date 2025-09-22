@@ -7,12 +7,10 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, isLoading } = useAuth();
 
-  // PERBAIKAN: Membuat URL Backend menjadi dinamis
-  // Saat di lokal, ia akan membaca dari file .env (http://localhost:5001)
-  // Saat di Netlify, ia akan membaca dari environment variable yang kita set
+  // This is the professional way: read from environment variables
   const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5001';
 
-  // Fungsi untuk redirect ke backend untuk login/logout
+  // Redirect functions
   const handleLogin = () => {
     window.location.href = `${backendUrl}/api/auth/github`;
   };
@@ -52,10 +50,8 @@ const Navbar: React.FC = () => {
 
   return (
     <motion.nav
-      // ... (animasi scroll dan JSX lainnya tetap sama) ...
       className="fixed top-0 left-0 right-0 z-50 border-b border-gray-800/50"
     >
-        {/* ... sisa kode JSX ... */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
                 <a href="#" className="text-white font-semibold text-lg">README Generator</a>

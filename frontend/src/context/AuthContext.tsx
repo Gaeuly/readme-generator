@@ -1,38 +1,39 @@
 import React, { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 
-// Tentukan tipe data untuk user yang kita dapat dari GitHub
+// Define the user data structure from GitHub
 interface IUser {
   id: string;
   displayName: string;
   username: string;
   photos: { value: string }[];
-  // Tambahkan properti lain jika perlu
 }
 
-// Tentukan apa saja yang akan disediakan oleh context kita
+// Define the context properties
 interface IAuthContext {
   user: IUser | null;
   isLoading: boolean;
 }
 
-// Buat context-nya
+// Create the context
 const AuthContext = createContext<IAuthContext>({
   user: null,
   isLoading: true,
 });
 
-// Buat "Provider" yang akan membungkus aplikasi kita
+// The main provider component
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // This effect runs once when the app loads
   useEffect(() => {
-    // Saat komponen pertama kali dimuat, tanyakan ke backend siapa yang sedang login
     const checkUserStatus = async () => {
+      // This is the professional way: read from environment variables
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5001';
+      
       try {
-        // PENTING: `credentials: 'include'` untuk mengirim cookie sesi
-        const response = await fetch('https://readme-generator-production-08d5.up.railway.app/api/auth/user', {
-          credentials: 'include',
+        const response = await fetch(`${backendUrl}/api/auth/user`, {
+          credentials: 'include', // IMPORTANT: sends session cookies
         });
         const data = await response.json();
         if (data.success) {
@@ -46,7 +47,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     checkUserStatus();
-  }, []); // [] berarti efek ini hanya berjalan sekali saat aplikasi dimuat
+  }, []); // Empty array means this runs only once
 
   return (
     <AuthContext.Provider value={{ user, isLoading }}>
@@ -55,7 +56,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 };
 
-// Buat custom hook agar lebih mudah digunakan di komponen lain
+// Custom hook for easy access to the context
 export const useAuth = () => {
   return useContext(AuthContext);
 };
