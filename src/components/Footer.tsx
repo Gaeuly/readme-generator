@@ -1,57 +1,40 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
+import { Github } from 'lucide-react'; // Import ikon GitHub
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-t from-black to-gray-900 border-t border-gray-800/50">
+    // PERBAIKAN 1: Menambahkan background glossy yang konsisten
+    <footer className="relative overflow-hidden border-t border-gray-800/50">
+      
+      {/* Efek cahaya glossy di tengah bawah */}
+      <div className="absolute bottom-[-10rem] left-1/2 -translate-x-1/2 w-[50rem] h-[20rem] bg-[radial-gradient(circle,rgba(156,163,175,0.1)_0%,transparent_70%)] rounded-full pointer-events-none"></div>
+
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 py-8"
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
       >
-        <div className="flex flex-col items-center space-y-4">
-          {/* Logo and tagline */}
-          <div className="flex items-center space-x-2">
-            <div className="w-6 h-6 bg-gradient-to-br from-gray-600 to-gray-800 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-xs">R</span>
-            </div>
-            <span className="text-gray-300 font-medium">README.md Generator</span>
-          </div>
+        {/* PERBAIKAN 2: Menyederhanakan layout menjadi satu baris */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           
-          {/* Made with love */}
-          <div className="flex items-center space-x-2 text-gray-500 text-sm">
-            <span>Made with</span>
-            <motion.div
-              animate={{ 
-                scale: [1, 1.2, 1],
-                color: ['#ef4444', '#f87171', '#ef4444']
-              }}
-              transition={{ 
-                duration: 1.5, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <Heart size={14} fill="currentColor" />
-            </motion.div>
-            <span>for developers</span>
-          </div>
-          
-          {/* Copyright */}
-          <p className="text-gray-500 text-sm text-center">
-            © 2025 Gaeuly. All rights reserved.
+          {/* Copyright text */}
+          <p className="text-gray-500 text-sm text-center sm:text-left">
+            © {new Date().getFullYear()} Gaeuly. All rights reserved.
           </p>
           
-          {/* Divider */}
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
-          
-          {/* Additional info */}
-          <p className="text-gray-600 text-xs text-center max-w-md">
-            Create beautiful README files effortlessly with our intuitive markdown editor and live preview.
-          </p>
+          {/* PERBAIKAN 3: Menambahkan Ikon GitHub */}
+          <a
+            href="https://github.com/Gaeuly/readme-generator" // Ganti dengan URL repo kamu yang benar
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-500 hover:text-white transition-colors duration-300"
+            aria-label="GitHub Repository"
+          >
+            <Github size={24} />
+          </a>
         </div>
       </motion.div>
     </footer>
