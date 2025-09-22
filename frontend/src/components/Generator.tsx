@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Send, AlertTriangle, CheckCircle, Eye } from 'lucide-react';
 import { marked } from 'marked';
 import clsx from 'clsx';
 import EditorControls from './EditorControls'; // Asumsi kita akan buat komponen ini
