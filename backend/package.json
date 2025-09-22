@@ -1,0 +1,21 @@
+{
+  "name": "readme-generator-backend",
+  "version": "1.0.0",
+  "description": "Server-side logic for the AI README Generator.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Gaeuly",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.2",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "simple-git": "^3.28.0"
+  }
+}

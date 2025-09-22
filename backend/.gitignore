@@ -1,0 +1,6 @@
+    # ... file lain
+    
+    # Abaikan file environment di frontend dan backend
+    frontend/.env
+    backend/.env
+    
