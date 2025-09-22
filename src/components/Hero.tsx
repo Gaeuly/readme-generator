@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles } from 'lucide-react';
-import clsx from 'clsx';
 
 const Hero: React.FC = () => {
   const scrollToGenerator = () => {
@@ -12,97 +11,49 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black">
-      <div className="max-w-4xl mx-auto px-4 text-center">
-        {/* Floating sparkles animation */}
-        <motion.div
-          animate={{ 
-            y: [0, -10, 0],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ 
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 left-20 text-gray-600"
-        >
-          <Sparkles size={24} />
-        </motion.div>
+    // PERBAIKAN 1: Jarak Section & Background Utama
+    // - Dihapus: `min-h-screen`. Diganti padding responsif `py-24 sm:py-32` agar jaraknya pas.
+    // - Ditambah: `bg-black relative overflow-hidden` untuk dasar background glossy.
+    <section className="bg-black relative overflow-hidden py-24 sm:py-32 flex items-center justify-center">
+      
+      {/* PERBAIKAN 2: Background Glossy Abu-abu di Pojok (Tanpa CSS Eksternal) */}
+      {/* Efek cahaya glossy di pojok kiri atas */}
+      <div className="absolute top-[-20rem] left-[-20rem] w-[50rem] h-[50rem] bg-[radial-gradient(circle,rgba(156,163,175,0.15)_0%,transparent_60%)] rounded-full pointer-events-none"></div>
+      {/* Efek cahaya glossy di pojok kanan bawah */}
+      <div className="absolute bottom-[-20rem] right-[-20rem] w-[50rem] h-[50rem] bg-[radial-gradient(circle,rgba(156,163,175,0.1)_0%,transparent_60%)] rounded-full pointer-events-none"></div>
+
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         <motion.div
-          animate={{ 
-            y: [0, -15, 0],
-            rotate: [0, -5, 5, 0]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          className="absolute top-40 right-32 text-gray-600"
-        >
-          <Sparkles size={20} />
-        </motion.div>
-
-        {/* Main content */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Generate Beautiful{' '}
-            <span className="bg-gradient-to-r from-gray-400 to-gray-200 bg-clip-text text-transparent">
+          {/* PERBAIKAN 3: Ukuran Font Responsif untuk Semua Perangkat */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tighter">
+            Generate Your Next{' '}
+            <span className="bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
               README.md
-            </span>{' '}
-            Files
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-gray-500"
-            >
-              |
-            </motion.span>
-          </motion.h1>
+            </span>
+            <span className="text-cyan-400">.</span>
+          </h1>
 
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Fast, customizable, and developer-friendly
-          </motion.p>
+          <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Instantly create professional, beautiful, and well-structured documentation for your projects using the power of AI.
+          </p>
 
           <motion.button
             onClick={scrollToGenerator}
-            whileHover={{ 
-              scale: 1.05, 
-              y: -5,
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
-            }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className={clsx(
-              "glossy-button px-8 py-4 rounded-xl",
-              "text-white font-semibold text-lg",
-              "flex items-center space-x-2 mx-auto",
-              "hover:from-gray-600/80 hover:to-gray-700/80"
-            )}
+            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            // Menggunakan style glossy button dari index.css yang sudah kamu buat
+            className="glossy-button px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-semibold text-base sm:text-lg flex items-center gap-x-2 mx-auto hover:border-gray-600 hover:shadow-cyan-500/10"
           >
-            <span>Get Started</span>
+            <span>Start Generating</span>
             <motion.div
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
               <ArrowDown size={20} />
             </motion.div>
