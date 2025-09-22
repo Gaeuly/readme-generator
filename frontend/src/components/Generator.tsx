@@ -54,7 +54,7 @@ const Generator: React.FC = () => {
 
     try {
       // Alamat backend kita (pastikan backend berjalan di port 5001)
-      const backendUrl = 'http://localhost:5001/api/generate';
+      const backendUrl = 'readme-generator-production-08d5.up.railway.app/api/generate';
 
       const response = await fetch(backendUrl, {
         method: 'POST',
